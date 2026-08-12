@@ -12,7 +12,7 @@ def get_db():
     db=SessionLocal()
     try:
         yield db
-    finally:
+    finally:    
         db.close()
 
 
@@ -25,7 +25,7 @@ def listurls(db:Session=Depends(get_db)):
 
 @app.post("/urls")
 def addurls(data: URLBase, db: Session = Depends(get_db)):
-    return crud.create(db, data.Value)
+    return crud.create(db, data.Value, data.Key)
     
 
 @app.get("/{short_key}")
@@ -43,4 +43,3 @@ def deleteurl(short_key: str, db: Session = Depends(get_db)):
     if not db_url:
         raise HTTPException(status_code=404, detail="Short URL not found")
     return crud.crud_del_url(db, db_url)
-    
