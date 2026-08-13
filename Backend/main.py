@@ -2,6 +2,7 @@ from fastapi import FastAPI,HTTPException,Depends,Request
 from fastapi.responses import RedirectResponse
 from sqlalchemy.orm import Session
 from database import SessionLocal, engine
+from key_database import keyset
 import models ,crud
 from schemas import URLBase
 
@@ -25,6 +26,8 @@ def listurls(db:Session=Depends(get_db)):
 
 @app.post("/urls")
 def addurls(data: URLBase, db: Session = Depends(get_db)):
+    if data.Key in keyset:
+        return HTTPException(status_code=409 ,detail="Alredy exist")
     return crud.create(db, data.Value, data.Key)
     
 

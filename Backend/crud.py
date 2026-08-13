@@ -1,5 +1,6 @@
 import keygenerator
 import database,models
+from key_database import keyset
 from sqlalchemy.orm import Session
 
 def validate(url):
@@ -7,8 +8,12 @@ def validate(url):
 
 def create(db:Session,url,key):
     if validate(url):
-        
-        secretkey=keygenerator.generate_short_key(6) if key==None else key
+        if key==None:
+            secretkey=keygenerator.generate_short_key(6)
+        else:
+            secretkey=key
+            keyset.add(key)
+
         dburl=models.URL(Value=url,Key=secretkey)
         db.add(dburl)
         db.commit()
