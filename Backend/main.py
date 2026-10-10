@@ -25,10 +25,6 @@ def listurls(db:Session=Depends(get_db)):
 
 @app.post("/urls")
 def addurls(data: URLBase, db: Session = Depends(get_db)):
-    if data.Key is not None:
-        existing_url = db.query(models.URL).filter(models.URL.Key == data.Key).first()
-        if existing_url:
-            raise HTTPException(status_code=409, detail="Already exists")
     return crud.create(db, data.Value, data.Key)
     
 

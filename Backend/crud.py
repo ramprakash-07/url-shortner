@@ -1,18 +1,24 @@
 import keygenerator
 import database,models
-from key_database import keyset
+from fastapi import HTTPException
 from sqlalchemy.orm import Session
 
 def validate(url):
     return bool(url)
 
+def checkcollision(db: Session, key):
+    return db.query(models.URL).filter(models.URL.Key == key).first() is not None
+
 def create(db:Session,url,key):
     if validate(url):
+        if key is not None:
+            if checkcollision(db, key):
+                raise HTTPException(status_code=409, detail="Already exists")
+
         if key==None:
             secretkey=keygenerator.generate_short_key(url)
         else:
             secretkey=key
-            keyset.add(key)
 
         dburl=models.URL(Value=url,Key=secretkey)
         db.add(dburl)
