@@ -10,6 +10,7 @@ def checkcollision(db: Session, key):
     return db.query(models.URL).filter(models.URL.Key == key).first() is not None
 
 def create(db:Session,url,key):
+    url = str(url)
     if validate(url):
         if key is not None:
             if checkcollision(db, key):

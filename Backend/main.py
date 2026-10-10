@@ -1,4 +1,5 @@
 from fastapi import FastAPI,HTTPException,Depends,Request
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse
 from sqlalchemy.orm import Session
 from database import SessionLocal, engine
@@ -6,6 +7,18 @@ import models ,crud
 from schemas import URLBase
 
 app=FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:3000",
+        "http://localhost:5173",
+        "http://localhost:5500",
+        "http://127.0.0.1:5500",
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 models.Base.metadata.create_all(bind=engine)
 
 def get_db():
