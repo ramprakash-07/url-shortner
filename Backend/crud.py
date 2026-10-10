@@ -9,7 +9,7 @@ def validate(url):
 def create(db:Session,url,key):
     if validate(url):
         if key==None:
-            secretkey=keygenerator.generate_short_key(6)
+            secretkey=keygenerator.generate_short_key(url)
         else:
             secretkey=key
             keyset.add(key)
