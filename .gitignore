@@ -7,3 +7,5 @@ venv/
 .env
 .idea/
 .vscode/
+Frontend/node_modules/
+Frontend/dist/
