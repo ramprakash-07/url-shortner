@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/:code([A-Za-z0-9_-]+)",
+      "destination": "https://url-shortner-9rxt.onrender.com/:code"
+    }
+  ]
+}

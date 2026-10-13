@@ -1,4 +1,5 @@
 const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+const PUBLIC_BASE = window.location.origin;
 
 const form = document.querySelector("#shorten-form");
 const urlInput = document.querySelector("#url-input");
@@ -25,7 +26,8 @@ form.addEventListener("submit", async (event) => {
     });
     const result = await response.json();
     if (!response.ok) throw new Error(result.detail || "Could not create link");
-    message.innerHTML = `Created: <a href="${API_BASE}/${result.Key}" target="_blank">${API_BASE}/${result.Key}</a>`;
+    const shortUrl = `${PUBLIC_BASE}/${encodeURIComponent(result.Key)}`;
+    message.innerHTML = `Created: <a href="${shortUrl}" target="_blank">${shortUrl}</a>`;
     form.reset();
   } catch (error) {
     message.textContent = error.message;
