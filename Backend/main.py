@@ -2,7 +2,7 @@ import os
 
 from fastapi import FastAPI,HTTPException,Depends,Request
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import RedirectResponse
+from fastapi.responses import RedirectResponse, Response
 from sqlalchemy.orm import Session
 from database import SessionLocal, engine
 import models ,crud
@@ -39,6 +39,11 @@ def get_db():
 @app.get("/")
 def root():
     return {"WElcome":"Haha "}
+
+@app.head("/")
+def healthcheck():
+    return Response(status_code=200)
+
 @app.get("/urls")
 def listurls(db:Session=Depends(get_db)):
     return crud.listurls(db)
