@@ -50,6 +50,11 @@ def listurls(db:Session=Depends(get_db)):
 
 @app.post("/urls")
 def addurls(data: URLBase, db: Session = Depends(get_db)):
+    url = str(data.Value)
+    existing_url = db.query(models.URL).filter(models.URL.Value == url).first()
+    if existing_url:
+        return existing_url
+
     return crud.create(db, data.Value, data.Key)
     
 
