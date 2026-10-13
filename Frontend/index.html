@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>URL Shortener</title>
+</head>
+<body>
+  <h1>URL Shortener</h1>
+
+  <form id="shorten-form">
+    <label for="url-input">URL:</label>
+    <input id="url-input" type="url" required>
+    <label for="key-input">Custom key (optional):</label>
+    <input id="key-input" type="text">
+    <button type="submit">Shorten</button>
+  </form>
+
+  <p id="form-message"></p>
+
+  <h2>Delete a shortened URL</h2>
+  <form id="delete-form">
+    <label for="short-url-input">Shortened URL:</label>
+    <input id="short-url-input" type="text" required>
+    <button type="submit">Delete</button>
+  </form>
+  <p id="delete-message"></p>
+
+  <script src="script.js"></script>
+</body>
+</html>
