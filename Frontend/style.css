@@ -1,4 +1,117 @@
 :root {
+  color: #17211b;
+  background: #f3f6f1;
+  font-family: Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.page {
+  width: min(100% - 32px, 560px);
+  margin: 0 auto;
+  padding: 56px 0;
+}
+
+h1 {
+  margin: 0 0 28px;
+  font-size: 36px;
+}
+
+h2 {
+  margin: 0 0 20px;
+  font-size: 20px;
+}
+
+.panel {
+  display: grid;
+  gap: 10px;
+  margin-top: 18px;
+  padding: 24px;
+  border: 1px solid #d8e0d5;
+  border-radius: 10px;
+  background: #ffffff;
+  box-shadow: 0 8px 24px rgba(23, 33, 27, 0.06);
+}
+
+label {
+  margin-top: 4px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+input {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid #c9d3c6;
+  border-radius: 6px;
+  font: inherit;
+}
+
+input:focus {
+  outline: 2px solid #9ccf68;
+  border-color: #6fa83d;
+}
+
+button {
+  margin-top: 8px;
+  padding: 11px 14px;
+  border: 0;
+  border-radius: 6px;
+  color: #ffffff;
+  background: #347a4b;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+}
+
+button:hover {
+  background: #28633b;
+}
+
+button:disabled {
+  cursor: wait;
+  opacity: 0.6;
+}
+
+button.danger {
+  background: #b84d45;
+}
+
+button.danger:hover {
+  background: #963d37;
+}
+
+.message {
+  min-height: 20px;
+  margin: 10px 2px;
+  overflow-wrap: anywhere;
+}
+
+.message a {
+  color: #28633b;
+  font-weight: 700;
+}
+
+@media (max-width: 480px) {
+  .page {
+    padding: 32px 0;
+  }
+
+  h1 {
+    font-size: 30px;
+  }
+
+  .panel {
+    padding: 18px;
+  }
+}
+:root {
   --ink: #19231f;
   --muted: #718078;
   --line: #dce4de;
